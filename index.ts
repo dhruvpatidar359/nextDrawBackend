@@ -12,7 +12,8 @@ let db: any;
 
 const io = new Server(server, {
     cors: {
-        origin: "https://nextdraw.vercel.app",
+        origin: ["https://nextdraw.vercel.app","http://localhost:3000"],
+
     },
 })
 

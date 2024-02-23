@@ -168,7 +168,7 @@ io.on('connection', (socket) => {
                     for (const key in rooms[roomId]) {
 
                         const tempNewArray = rooms[roomId][key];
-                        console.log(tempNewArray);
+                      
                         socket.emit('render-elements', { tempNewArray });
 
                     }

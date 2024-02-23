@@ -168,7 +168,7 @@ io.on('connection', (socket) => {
                 if (rooms[roomId]) {
                     console.log("sending the data to the joined user");
                     console.log(rooms[roomId]);
-                    for (const key in rooms[roomId]) {
+                    for (let key in rooms[roomId]) {
 
                         const tempNewArray = rooms[roomId][key];
 

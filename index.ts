@@ -12,7 +12,7 @@ let db: any;
 
 const io = new Server(server, {
     cors: {
-        origin: ["https://nextdraw.vercel.app","http://localhost:3000"],
+        origin: ["https://nextdraw.vercel.app", "http://localhost:3000"],
 
     },
 })
@@ -121,6 +121,8 @@ io.on('connection', (socket) => {
 
             for (let i = 0; i < elements.length; i++) {
                 const element = elements[i];
+                // as undo redo not supported right now
+                if (element === null || element === undefined) continue;
                 const key = element.id.split("#")[0];
                 rooms[roomId][key] = element;
             }
@@ -166,7 +168,7 @@ io.on('connection', (socket) => {
                     for (const key in rooms[roomId]) {
 
                         const tempNewArray = rooms[roomId][key];
-
+                        console.log(tempNewArray);
                         socket.emit('render-elements', { tempNewArray });
 
                     }

@@ -118,7 +118,8 @@ io.on('connection', (socket) => {
 
         if (!rooms[roomId]) {
             rooms[roomId] = {};
-
+            console.log(elements);
+            console.log("--------------------");
             for (let i = 0; i < elements.length; i++) {
                 const element = elements[i];
                 // as undo redo not supported right now
@@ -165,10 +166,12 @@ io.on('connection', (socket) => {
                 socket.join(roomId);
                 socket.to(roomId).emit('user joined', socket.id);
                 if (rooms[roomId]) {
+                    console.log("sending the data to the joined user");
+                    console.log(rooms[roomId]);
                     for (const key in rooms[roomId]) {
 
                         const tempNewArray = rooms[roomId][key];
-                      
+
                         socket.emit('render-elements', { tempNewArray });
 
                     }

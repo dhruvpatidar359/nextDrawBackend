@@ -12,7 +12,7 @@ let db: any;
 
 const io = new Server(server, {
     cors: {
-        origin: ["https://nextdraw.vercel.app", "http://localhost:3000"],
+        origin: ["https://nextdraw.vercel.app", "http://localhost:3000","https://console.cron-job.org"],
 
     },
 })

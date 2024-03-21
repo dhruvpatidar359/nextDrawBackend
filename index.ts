@@ -6,16 +6,22 @@ const server = http.createServer(app)
 const dotenv = require('dotenv');
 dotenv.config();
 import { Server } from 'socket.io'
+var cron = require('node-cron');
+
+
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
 let db: any;
 
 const io = new Server(server, {
     cors: {
-        origin: ["https://nextdraw.vercel.app", "http://localhost:3000","https://console.cron-job.org"],
-
+        origin: ["https://nextdraw.vercel.app", "http://localhost:3000"],
     },
 })
+
+cron.schedule('15 * * * *', () => {
+    console.log('running a task every minute');
+});
 
 
 
@@ -118,7 +124,7 @@ io.on('connection', (socket) => {
 
         if (!rooms[roomId]) {
             rooms[roomId] = {};
-          
+
             for (let i = 0; i < elements.length; i++) {
                 const element = elements[i];
                 // as undo redo not supported right now
@@ -165,7 +171,7 @@ io.on('connection', (socket) => {
                 socket.join(roomId);
                 socket.to(roomId).emit('user joined', socket.id);
                 if (rooms[roomId]) {
-                   
+
                     for (let key in rooms[roomId]) {
 
                         const tempNewArray = rooms[roomId][key];

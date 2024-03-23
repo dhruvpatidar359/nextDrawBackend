@@ -21,7 +21,7 @@ const io = new Server(server, {
 
 
 
-cron.schedule('*/10 * * * *', () => {
+cron.schedule('*/25 * * * *', () => {
   console.log('running a task every 10 minutes');
 });
 

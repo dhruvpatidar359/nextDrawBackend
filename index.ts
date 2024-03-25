@@ -36,7 +36,9 @@ const client = new MongoClient(uri, {
 });
 
 
-
+app.get('/keep-alive', (req, res) => {
+    res.send('Server is awake!');
+});
 
 async function run() {
     try {

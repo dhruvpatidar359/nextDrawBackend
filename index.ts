@@ -6,7 +6,7 @@ const server = http.createServer(app)
 const dotenv = require('dotenv');
 dotenv.config();
 import { Server } from 'socket.io'
-var cron = require('node-cron');
+
 
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
@@ -15,15 +15,13 @@ let db: any;
 
 const io = new Server(server, {
     cors: {
-        origin: ["https://nextdraw.vercel.app", "http://localhost:3000"],
+        origin: "*",
     },
 })
 
 
 
-cron.schedule('*/25 * * * *', () => {
-  console.log('running a task every 10 minutes');
-});
+
 
 
 
